@@ -125,7 +125,7 @@ class PostController extends Controller
         $post=Post::findOrFail($id);
 
         //delete file
-        Storage::delete('public/posts'.$post->image);
+        Storage::delete('public/posts/'.$post->image);
 
         // delete row data dalam database
         $post->delete();

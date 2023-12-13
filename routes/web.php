@@ -43,6 +43,9 @@ Route::get('/create',function(){
 Route::get('/product',[ProductController::class,'index']);
 Route::get('/productshow',[ProductController::class,'show']);
 Route::get('/productshowall',[ProductController::class,'showAll']);
+Route::get('/productstore',[ProductController::class,'store']);
+Route::get('/productupdate',[ProductController::class,'update']);
+Route::get('/productdelete',[ProductController::class,'delete']);
 
 Route::resource('posts',PostController::class);
 
