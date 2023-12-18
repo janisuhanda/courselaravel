@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +57,12 @@ Route::get('/halaman',function(){
     $konten = 'harry potter and the deathly hallows: part 2';
     return view('konten.halaman',compact('title','konten'));
 });
+
+Route::get('/kategori',[KategoriController::class,'index']);
+Route::get('/kategori/store',[KategoriController::class,'store']);
+Route::get('/kategori/update',[KategoriController::class,'update']);
+Route::get('/kategori/delete',[KategoriController::class,'delete']);
+
+
+Route::get('/users',[UserController::class,'index']);
+Route::get('/categories',[CategoryController::class,'index']);
