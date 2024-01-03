@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories=category::all();
+        $categories=Category::all();
         // echo "<pre>";
         // print_r($categories);
         foreach ($categories as $category) {

@@ -6,6 +6,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +22,18 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
+
+
     return view('welcome');
 });
+
+Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::post('/login',[LoginController::class,'authenticate'])->name('login.authenticate');
+Route::get('/logout',[LoginController::class,'logout']);
+Route::get('/register',[RegisterController::class,'index'])->name('register');
+Route::post('/register',[RegisterController::class,'store'])->name('register.store');
+
+Route::get('/home',[HomeController::class,'index']);
 
 Route::get('/welcome',function(){
     echo "welcome to my web";

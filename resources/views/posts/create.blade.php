@@ -15,15 +15,42 @@
 
                     <div class="from-group">
                         <label>IMAGE</label>
-                        <input name="image" type="file" class="form-control">
+                        <input name="image" accept="image/png, image/jpeg" type="file" class="form-control
+                        @error('image')
+                        is-invalid
+                        @enderror">
+                        @error('image')
+                           <div class="alert alert-danger mt-2 ">
+                                {{$message}}
+                           </div>
+                        @enderror
                     </div>
                     <div class="from-group">
                         <label>TITLE</label>
-                        <input name="title" type="text" class="form-control">
+                        <input name="title" type="text" class="form-control
+                        @error('title')
+                            is-invalid
+                        @enderror"
+                        value="{{old('title')}}">
+                        @error('title')
+                           <div class="alert alert-danger mt-2 ">
+                                {{$message}}
+                           </div>
+                        @enderror
+
                     </div>
                     <div class="from-group">
                         <label>CONTENT</label>
-                        <textarea name="content" class="form-control"></textarea>
+                        <textarea name="content" class="form-control
+                        @error('content')
+                        is-invalid
+                        @enderror
+                        ">{{old('content')}}</textarea>
+                        @error('content')
+                           <div class="alert alert-danger mt-2 ">
+                                {{$message}}
+                           </div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">SUBMIT</button>
                 </form>

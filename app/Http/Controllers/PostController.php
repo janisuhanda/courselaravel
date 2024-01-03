@@ -104,6 +104,7 @@ class PostController extends Controller
                 'title' => $request->title,
                 'content' => $request->content
             ]);
+
         }else{
             // update ke database
             $post->update([

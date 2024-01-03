@@ -19,6 +19,13 @@ class UserController extends Controller
             echo "<br>";
             echo $user->phone->phone;
             echo "<br>";
+            echo "Role :";
+            echo "<br>";
+            foreach ($user->roles()->get() as $role) {
+            echo $role->name;
+            echo "<br>";
+            }
+            echo "<hr>";
         }
     }
 }
