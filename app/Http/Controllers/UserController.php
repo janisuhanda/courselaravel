@@ -17,7 +17,7 @@ class UserController extends Controller
             echo "<br>";
             echo $user->email;
             echo "<br>";
-            echo $user->phone->phone;
+            echo $user->phone->phone ?? '' ;
             echo "<br>";
             echo "Role :";
             echo "<br>";
@@ -25,6 +25,7 @@ class UserController extends Controller
             echo $role->name;
             echo "<br>";
             }
+            echo $user->roles()->get()[0]->name;
             echo "<hr>";
         }
     }

@@ -27,13 +27,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::get('/login',[LoginController::class,'index'])->name('login')->middleware('guest');
 Route::post('/login',[LoginController::class,'authenticate'])->name('login.authenticate');
-Route::get('/logout',[LoginController::class,'logout']);
-Route::get('/register',[RegisterController::class,'index'])->name('register');
+// Route::get('/logout',[LoginController::class,'logout'])->middleware('auth');
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout')->middleware('auth');
+Route::get('/register',[RegisterController::class,'index'])->name('register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'store'])->name('register.store');
 
-Route::get('/home',[HomeController::class,'index']);
+Route::get('/home',[HomeController::class,'index'])->middleware('auth');
+Route::get('/administrator',[HomeController::class,'index'])->middleware('auth')->middleware('can:isAdministrator');
+Route::get('/admin',[HomeController::class,'index'])->middleware('auth')->middleware('can:isAdmin');
+Route::get('/userbiasa',[HomeController::class,'index'])->middleware('auth')->middleware('can:isUserBiasa');
 
 Route::get('/welcome',function(){
     echo "welcome to my web";
