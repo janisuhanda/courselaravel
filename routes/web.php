@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HttpClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,3 +89,5 @@ Route::get('/kategori/delete',[KategoriController::class,'delete']);
 
 Route::get('/users',[UserController::class,'index']);
 Route::get('/categories',[CategoryController::class,'index']);
+
+Route::get('/readpostapi',[HttpClientController::class,'readpost']);

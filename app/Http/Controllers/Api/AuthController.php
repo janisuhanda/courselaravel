@@ -89,7 +89,7 @@ class AuthController extends Controller
                     'status' => true,
                     'message' => 'login user berhasil',
                     'data' => $user,
-                    'token' => $user->createToken("API TOKEN USER")->plainTextToken
+                    'token' => $user->createToken("API-TOKEN-USER-".$user['name'])->plainTextToken
                 ],200);
         } catch (\Throwable $th) {
             //throw $th;
@@ -98,5 +98,26 @@ class AuthController extends Controller
                 'message' => 'login failed'.$th->getMessage()
             ],422);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        // Auth::user()->tokens()->delete();
+        $user=$request->user();
+
+        dd($request->user()->currentAccessToken()->token);
+        // revoke all token
+        // $user->tokens()->delete();
+
+        // Revoke the token that was used to authenticate the current request...
+        $request->user()->currentAccessToken()->delete();
+
+        // Revoke a specific token...
+        // $user->tokens()->where('id', $tokenId)->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'logout berhasil'
+        ]);
     }
 }
